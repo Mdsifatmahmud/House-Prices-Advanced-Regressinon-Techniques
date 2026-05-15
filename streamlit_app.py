@@ -9,7 +9,14 @@ st.set_page_config(
 )
 
 
-util.load_saved_artifacts()
+try:
+    util.load_saved_artifacts()
+except ModuleNotFoundError as error:
+    st.error(
+        "Model load kora jacche na. requirements.txt file-e missing package add kore app redeploy korte hobe."
+    )
+    st.code(f"Missing module: {error.name}")
+    st.stop()
 
 
 st.markdown(
